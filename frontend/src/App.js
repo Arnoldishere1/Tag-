@@ -158,7 +158,7 @@ const SignaturePad = React.forwardRef(function SignaturePad({ onChange }, ref) {
     const dpr = window.devicePixelRatio || 1;
     c.width = rect.width * dpr;
     c.height = rect.height * dpr;
-    const ctx = c.getContext("2d");
+    const ctx = c.getContext("2d", { willReadFrequently: true });
     ctx.scale(dpr, dpr);
     ctx.strokeStyle = "#09090b";
     ctx.lineWidth = 2.2;
@@ -219,7 +219,7 @@ const SignaturePad = React.forwardRef(function SignaturePad({ onChange }, ref) {
   const clear = () => {
     const c = canvasRef.current;
     if (!c) return;
-    const ctx = c.getContext("2d");
+    const ctx = c.getContext("2d", { willReadFrequently: true });
     ctx.clearRect(0, 0, c.width, c.height);
     dirtyRef.current = false;
     setHasInk(false);
