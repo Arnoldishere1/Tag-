@@ -1,0 +1,117 @@
+{
+  "project_name": "Scaffold Safety Inspection App",
+  "theme": "Light",
+  "archetype": "Archetype 4 (Swiss & High-Contrast)",
+  "rationale": "For an industrial field inspection tool used outdoors, high contrast and extreme legibility are paramount. A brutalist, technical, 'Swiss' approach removes decorative clutter, using strict grids and signal colors (Safety Orange, Green, Red) to guide the inspector's focus.",
+  "typography": {
+    "heading_font": "Cabinet Grotesk",
+    "body_font": "IBM Plex Sans",
+    "font_imports": [
+      "@import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@900,800,700,500,400&display=swap');",
+      "@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');"
+    ],
+    "scales": {
+      "h1": "text-4xl tracking-tighter font-black uppercase",
+      "h2": "text-2xl tracking-tight font-bold",
+      "h3": "text-xl tracking-tight font-bold",
+      "body": "text-base font-normal leading-relaxed text-zinc-800",
+      "labels": "text-xs tracking-[0.15em] uppercase font-bold text-zinc-500",
+      "data_value": "text-lg font-medium text-zinc-950 font-mono"
+    }
+  },
+  "colors": {
+    "background": {
+      "primary": "#FFFFFF",
+      "secondary": "#F4F4F5",
+      "tertiary": "#E4E4E7"
+    },
+    "text": {
+      "primary": "#09090B",
+      "secondary": "#52525B",
+      "inverse": "#FFFFFF"
+    },
+    "brand": {
+      "primary": "#EA580C",
+      "hover": "#C2410C"
+    },
+    "status": {
+      "pass": {
+        "bg": "#10B981",
+        "text": "#FFFFFF",
+        "muted": "#D1FAE5"
+      },
+      "fail": {
+        "bg": "#EF4444",
+        "text": "#FFFFFF",
+        "muted": "#FEE2E2"
+      },
+      "na": {
+        "bg": "#64748B",
+        "text": "#FFFFFF",
+        "muted": "#F1F5F9"
+      }
+    },
+    "border": "#E4E4E7"
+  },
+  "layout_and_spacing": {
+    "philosophy": "Technical Grid. Elements are separated by hard 1px borders rather than soft shadows.",
+    "container": "w-full max-w-2xl mx-auto px-4 sm:px-6",
+    "touch_targets": "Minimum 48px height for all interactive elements (buttons, inputs, toggles) to accommodate field usage.",
+    "radius": "rounded-sm (2px) to maintain a robust, industrial feel.",
+    "shadows": "None. Rely on 1px borders (border-zinc-200 or border-zinc-300) for separation."
+  },
+  "components": {
+    "pin_gate": {
+      "layout": "Centered viewport, heavy typography. The keypad should be a strict CSS grid (grid-cols-3) with large, stark square buttons (border border-zinc-200 bg-white hover:bg-zinc-100).",
+      "background_image": "Use the scaffolding image with high opacity white overlay (bg-white/90 backdrop-blur-sm) to keep it visible but unobtrusive."
+    },
+    "header": {
+      "style": "Sticky top, bg-white, border-b border-zinc-200, z-50. Must include a prominent Live Clock in mono font (e.g., IBM Plex Mono if available, or just tight tracking sans) and App Title."
+    },
+    "inspection_form": {
+      "inputs": "Shadcn standard inputs but customized: h-14, text-lg, border-zinc-300, focus:ring-2 focus:ring-orange-500. Labels must be uppercase 'labels' scale.",
+      "checklist_row": "Flex-col on mobile, flex-row on larger screens. Question text is large and readable. PASS/FAIL/N/A should be a segmented control (flex row) where the active state uses the designated status color.",
+      "photo_upload": "Dashed border area (border-2 border-dashed border-zinc-300 bg-zinc-50), min-h-[120px] flex items-center justify-center. Hover state: border-orange-500.",
+      "signature_pad": "bg-zinc-50, border border-zinc-300. Must include an absolutely positioned 'Clear' text button (text-xs uppercase text-zinc-500 hover:text-red-500) inside the pad area."
+    },
+    "archive_folders": {
+      "accordion": "Shadcn Accordion. Thick borders between items. Accordion trigger should display the Site Name prominently.",
+      "inspection_card": "Grid layout inside the accordion content. Display Date, Inspector, ID, Thumbnail, and a highly visible Status Badge (Green/Red pill). Include a destructive Delete button."
+    },
+    "buttons": {
+      "primary": "bg-orange-600 text-white font-bold uppercase tracking-wide h-14 w-full rounded-sm hover:bg-orange-700 transition-colors",
+      "secondary": "bg-white border border-zinc-300 text-zinc-900 font-bold uppercase h-14 w-full rounded-sm hover:bg-zinc-50 transition-colors"
+    }
+  },
+  "media_urls": [
+    {
+      "url": "https://images.pexels.com/photos/35155685/pexels-photo-35155685.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "category": "login_background",
+      "description": "Architectural scaffolding to be used as a subtle background pattern behind the PIN gate."
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1659353586512-bcc4c7182d01",
+      "category": "empty_state_illustration",
+      "description": "Inspector in hard hat looking at tablet. Use for empty archive states or successful submission screen."
+    }
+  ],
+  "motion_and_interactions": {
+    "hover": "Instant color changes (duration-150), no bouncy scales. Keep it snappy.",
+    "page_transition": "Simple opacity fade. No massive transform animations."
+  },
+  "icons": {
+    "library": "lucide-react",
+    "stroke_width": "2",
+    "usage": "Use strictly for functional communication (e.g., Camera for photo upload, Clock for time, Chevron for accordions). Do not use decoratively."
+  },
+  "testing": {
+    "rule": "Every button, input, accordion, and key informational element MUST include a data-testid attribute formatted as kebab-case-role."
+  },
+  "instructions_to_main_agent": [
+    "Inject the font imports for Cabinet Grotesk and IBM Plex Sans into index.css.",
+    "Apply 'font-sans' with IBM Plex Sans for the body and define a custom font family for Cabinet Grotesk for headings.",
+    "Build the application completely mobile-first, ensuring all touch targets (like the PASS/FAIL toggles and signature pad) are easily usable on a small screen.",
+    "Integrate Shadcn UI components but strip away soft rounded corners and drop-shadows. Replace them with hard borders (rounded-sm) according to the 'Technical Grid' philosophy.",
+    "Ensure the final tag status explicitly highlights RED or GREEN prominently before the submission button."
+  ]
+}
